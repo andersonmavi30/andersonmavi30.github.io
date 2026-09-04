@@ -123,6 +123,93 @@ h1 {
 .card { min-height: 260px; padding: 26px; border: 1px solid var(--line); border-radius: 15px; background: var(--surface); }
 .card h3 { margin: 82px 0 10px; font-size: 24px; letter-spacing: -.035em; }
 .card p, .contact p { color: var(--muted); line-height: 1.65; }
+
+.certifications-gallery {
+  margin-top: 18px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+}
+.certifications-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+  gap: 8px 36px;
+  align-items: end;
+  margin-bottom: 26px;
+}
+.certifications-intro .eyebrow { grid-column: 1 / -1; }
+.certifications-intro h3 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 40px);
+  letter-spacing: -.04em;
+}
+.certifications-intro > p:last-child {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+.credly-badge {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  padding: 20px 14px 17px;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 82%, var(--bg));
+  text-align: center;
+  text-decoration: none;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.credly-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--accent);
+  opacity: .75;
+}
+.credly-badge:hover,
+.credly-badge:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--accent) 13%, transparent);
+  outline: none;
+}
+.credly-badge img {
+  display: block;
+  width: min(100%, 170px);
+  height: auto;
+  aspect-ratio: 1;
+  margin-bottom: 15px;
+  object-fit: contain;
+}
+.credly-badge strong {
+  font-size: 16px;
+  line-height: 1.25;
+}
+.credly-badge > span {
+  min-height: 38px;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.credly-badge small {
+  margin-top: 14px;
+  color: var(--accent);
+  font: 800 10px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .08em;
+}
+
 .contact { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
 .contact p { max-width: 700px; }
 footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px 0 50px; color: var(--muted); font: 12px ui-monospace, monospace; }
@@ -132,6 +219,8 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px
   .site-header nav { grid-column: 1 / -1; grid-row: 2; gap: 18px; overflow-x: auto; padding-top: 14px; white-space: nowrap; }
   .header-actions { grid-column: 2; grid-row: 1; }
   .grid.three { grid-template-columns: 1fr 1fr; }
+  .badge-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .certifications-intro { grid-template-columns: 1fr; }
   .contact { grid-template-columns: 1fr; }
 }
 
@@ -142,6 +231,14 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px
   .hero-actions, footer { flex-direction: column; }
   .hero-actions { align-items: stretch; text-align: center; }
   .grid.two, .grid.three { grid-template-columns: 1fr; }
+  .badge-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .certifications-gallery { padding: 22px 16px; }
   .section { padding: 72px 0; }
   .section-heading { grid-template-columns: 42px 1fr; }
+}
+
+
+@media (max-width: 410px) {
+  .badge-grid { grid-template-columns: 1fr; }
+  .credly-badge img { width: 160px; }
 }
