@@ -30,8 +30,8 @@ function applyLanguage(language) {
     : "Anderson Martinez Virviescas | Network Automation & NetDevOps";
 
   document.querySelector('meta[name="description"]').content = isSpanish
-    ? "Portafolio técnico de Anderson Martinez Virviescas sobre Network Automation, NetDevOps, redes, Linux y seguridad."
-    : "Technical portfolio of Anderson Martinez Virviescas focused on Network Automation, NetDevOps, networking, Linux, and security.";
+    ? "Portafolio técnico de Anderson Martinez Virviescas sobre administración de redes, firewalls, Linux, Network Automation, NetDevOps y DevNet."
+    : "Technical portfolio of Anderson Martinez Virviescas focused on network, firewall, and Linux administration, Network Automation, NetDevOps, and DevNet.";
 }
 
 applyTheme(localStorage.getItem("theme") || "light");
