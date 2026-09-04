@@ -14,7 +14,12 @@
     ["Packet Flow","El recorrido profesional como flujo de paquetes.","A professional journey shaped like packet flow."],
     ["Glass NOC","Capas translúcidas y profundidad de centro de datos.","Translucent layers and data-center depth."],
     ["Credentials First","Certificaciones y evidencia técnica en primer plano.","Certifications and technical evidence first."],
-    ["Tech Magazine","Portada editorial para historias, labs y conocimiento.","Editorial cover for stories, labs and knowledge."]
+    ["Tech Magazine","Portada editorial para historias, labs y conocimiento.","Editorial cover for stories, labs and knowledge."],
+    ["Corporate Technology","Presencia empresarial para soluciones, confianza y alcance.","Enterprise presence for solutions, trust and reach."],
+    ["Expert Consultant","Autoridad técnica personal orientada a resolver problemas.","Personal technical authority focused on solving problems."],
+    ["Open Source Academy","Comunidad, artículos, videos y formación práctica.","Community, articles, videos and hands-on training."],
+    ["Cybersecurity Integrator","Servicios, fabricantes y continuidad operativa.","Services, vendors and operational continuity."],
+    ["MV Networks Flagship","La síntesis premium de marca personal y ecosistema técnico.","The premium synthesis of personal brand and technical ecosystem."]
   ];
 
   const badges = [
@@ -52,9 +57,9 @@
       <a class="brand" href="../../"><span>AM</span><b>Anderson Martinez Virviescas</b></a>
       <nav class="design-nav" aria-label="Design navigation">
         <a href="../" title="Todos los diseños">▦</a>
-        <a href="../${String(n === 1 ? 15 : n-1).padStart(2,"0")}/" aria-label="Diseño anterior">←</a>
-        <strong>${String(n).padStart(2,"0")} / 15</strong>
-        <a href="../${String(n === 15 ? 1 : n+1).padStart(2,"0")}/" aria-label="Diseño siguiente">→</a>
+        <a href="../${String(n === 1 ? 20 : n-1).padStart(2,"0")}/" aria-label="Diseño anterior">←</a>
+        <strong>${String(n).padStart(2,"0")} / 20</strong>
+        <a href="../${String(n === 20 ? 1 : n+1).padStart(2,"0")}/" aria-label="Diseño siguiente">→</a>
       </nav>
       <div class="controls">
         <button id="language" type="button" aria-label="Cambiar idioma">EN</button>
@@ -120,7 +125,7 @@
       </section>
     </main>
 
-    <footer><p>© <span id="year"></span> Anderson Martinez Virviescas</p><a href="../" data-es="Comparar los 15 diseños ↑" data-en="Compare all 15 designs ↑">Comparar los 15 diseños ↑</a></footer>`;
+    <footer><p>© <span id="year"></span> Anderson Martinez Virviescas</p><a href="../" data-es="Comparar los 20 diseños ↑" data-en="Compare all 20 designs ↑">Comparar los 15 diseños ↑</a></footer>`;
 
   const root = document.documentElement;
   const langButton = document.getElementById("language");
