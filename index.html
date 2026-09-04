@@ -1,66 +1,139 @@
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portafolio técnico de Anderson Martínez sobre Network Automation, NetDevOps, redes, Linux y seguridad.">
-  <title>Anderson Martínez | Network Automation & NetDevOps</title>
+  <meta name="description" content="Portafolio técnico de Anderson Martinez Virviescas sobre Network Automation, NetDevOps, redes, Linux y seguridad.">
+  <title>Anderson Martinez Virviescas | Network Automation & NetDevOps</title>
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="assets/js/theme.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#inicio" aria-label="Ir al inicio"><span class="brand-mark">AM</span><span>Anderson MV Networks</span></a>
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
+      <span class="brand-mark">AM</span>
+      <span>Anderson Martinez Virviescas</span>
+    </a>
+
     <nav aria-label="Navegación principal">
-      <a href="#perfil">Perfil</a><a href="#proyectos">Proyectos</a><a href="#labs">Labs</a><a href="#blog">Blog</a><a href="#contacto">Contacto</a>
+      <a href="#perfil" data-es="Perfil" data-en="Profile">Perfil</a>
+      <a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a>
+      <a href="#labs">Labs</a>
+      <a href="#blog">Blog</a>
+      <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
     </nav>
-    <button class="theme-toggle" type="button" aria-label="Cambiar tema" aria-pressed="false"><span aria-hidden="true">☀︎</span></button>
+
+    <div class="header-actions">
+      <button class="language-toggle" type="button" aria-label="Cambiar idioma a inglés">EN</button>
+      <button class="theme-toggle" type="button" aria-label="Activar modo oscuro" aria-pressed="false">
+        <span aria-hidden="true">☾</span>
+      </button>
+    </div>
   </header>
 
   <main id="inicio">
     <section class="hero">
       <p class="eyebrow">NETWORK AUTOMATION · NETDEVOPS · DEVNET</p>
-      <h1>Hola, soy<br><span>Anderson Martínez.</span></h1>
-      <p class="hero-copy">Administrador de redes y desarrollador de automatización. Este será mi espacio para documentar proyectos, laboratorios, aprendizaje y contenido técnico.</p>
+      <h1>
+        <span data-es="Hola, soy" data-en="Hi, I'm">Hola, soy</span><br>
+        <span class="accent-name">Anderson Martinez Virviescas.</span>
+      </h1>
+      <p class="hero-copy" data-es="Administrador de redes y desarrollador de automatización. Este será mi espacio para presentar mi experiencia y documentar proyectos, laboratorios, aprendizaje y contenido técnico." data-en="Network administrator and automation developer. This will be my space to present my experience and document projects, labs, continuous learning, and technical content.">Administrador de redes y desarrollador de automatización. Este será mi espacio para presentar mi experiencia y documentar proyectos, laboratorios, aprendizaje y contenido técnico.</p>
       <div class="hero-actions">
-        <a class="button primary" href="#proyectos">Explorar estructura</a>
-        <a class="button" href="https://github.com/andersonmavi30">Ver GitHub</a>
+        <a class="button primary" href="#proyectos" data-es="Explorar estructura" data-en="Explore the site">Explorar estructura</a>
+        <a class="button" href="https://github.com/andersonmavi30" data-es="Ver GitHub" data-en="View GitHub">Ver GitHub</a>
       </div>
-      <div class="status" aria-label="Estado del sitio"><span></span> Portafolio en construcción · ES / EN</div>
+      <div class="status" aria-label="Estado del sitio">
+        <span></span>
+        <span data-es="Portafolio en construcción · ES / EN" data-en="Portfolio under construction · ES / EN">Portafolio en construcción · ES / EN</span>
+      </div>
     </section>
 
     <section class="section" id="perfil">
-      <div class="section-heading"><span>01</span><div><p>PERFIL PROFESIONAL</p><h2>Experiencia y especialidades</h2></div></div>
-      <div class="grid two">
-        <article class="card"><h3>Sobre mí</h3><p>Trayectoria en routing, switching, firewalls, Linux, virtualización y automatización de infraestructura.</p></article>
-        <article class="card"><h3>CV y certificaciones</h3><p>Próximamente: experiencia detallada, CV descargable, certificaciones y badges verificables.</p></article>
+      <div class="section-heading"><span>01</span><div>
+        <p data-es="PRESENTACIÓN PROFESIONAL" data-en="PROFESSIONAL PROFILE">PRESENTACIÓN PROFESIONAL</p>
+        <h2 data-es="Experiencia, CV y certificaciones" data-en="Experience, resume, and certifications">Experiencia, CV y certificaciones</h2>
+      </div></div>
+      <div class="grid three">
+        <article class="card">
+          <small data-es="PRESENTACIÓN" data-en="ABOUT">PRESENTACIÓN</small>
+          <h3 data-es="Sobre mí" data-en="About me">Sobre mí</h3>
+          <p data-es="Administrador de redes con experiencia en routing, switching, firewalls, Linux, virtualización y automatización." data-en="Network administrator experienced in routing, switching, firewalls, Linux, virtualization, and automation.">Administrador de redes con experiencia en routing, switching, firewalls, Linux, virtualización y automatización.</p>
+        </article>
+        <article class="card">
+          <small data-es="EXPERIENCIA Y CV" data-en="EXPERIENCE AND RESUME">EXPERIENCIA Y CV</small>
+          <h3 data-es="Trayectoria profesional" data-en="Professional journey">Trayectoria profesional</h3>
+          <p data-es="Próximamente: cargos, responsabilidades, resultados y CV descargable." data-en="Coming soon: roles, responsibilities, results, and downloadable resume.">Próximamente: cargos, responsabilidades, resultados y CV descargable.</p>
+        </article>
+        <article class="card">
+          <small data-es="CERTIFICACIONES" data-en="CERTIFICATIONS">CERTIFICACIONES</small>
+          <h3 data-es="Credenciales técnicas" data-en="Technical credentials">Credenciales técnicas</h3>
+          <p data-es="Certificaciones, badges verificables, formación y próximos objetivos." data-en="Certifications, verifiable badges, training, and upcoming goals.">Certificaciones, badges verificables, formación y próximos objetivos.</p>
+        </article>
       </div>
     </section>
 
     <section class="section" id="proyectos">
-      <div class="section-heading"><span>02</span><div><p>TRABAJO TÉCNICO</p><h2>Proyectos y laboratorios</h2></div></div>
+      <div class="section-heading"><span>02</span><div>
+        <p data-es="TRABAJO TÉCNICO" data-en="TECHNICAL WORK">TRABAJO TÉCNICO</p>
+        <h2 data-es="Proyectos y laboratorios" data-en="Projects and labs">Proyectos y laboratorios</h2>
+      </div></div>
       <div class="grid three">
-        <article class="card"><small>PROYECTOS</small><h3>Network Automation</h3><p>Repositorios de Python, Ansible, AWX, NetBox, Jenkins y automatización multi-vendor.</p></article>
-        <article class="card" id="labs"><small>LABORATORIOS</small><h3>NetDevOps & DevNet</h3><p>Topologías, pipelines CI/CD, validaciones, rollback y documentación reproducible.</p></article>
-        <article class="card"><small>TECNOLOGÍAS</small><h3>Stack técnico</h3><p>Linux, Git, APIs, NETCONF, RESTCONF, Docker, Kubernetes, Batfish y pyATS.</p></article>
+        <article class="card">
+          <small data-es="GITHUB Y GITLAB" data-en="GITHUB AND GITLAB">GITHUB Y GITLAB</small>
+          <h3>Network Automation</h3>
+          <p data-es="Proyectos públicos de Python, Ansible, AWX, NetBox, Jenkins y automatización multi-vendor." data-en="Public projects using Python, Ansible, AWX, NetBox, Jenkins, and multi-vendor automation.">Proyectos públicos de Python, Ansible, AWX, NetBox, Jenkins y automatización multi-vendor.</p>
+        </article>
+        <article class="card" id="labs">
+          <small data-es="LABORATORIOS" data-en="LABS">LABORATORIOS</small>
+          <h3>NetDevOps & DevNet</h3>
+          <p data-es="Topologías, pipelines CI/CD, validaciones, rollback y documentación reproducible." data-en="Topologies, CI/CD pipelines, validations, rollback, and reproducible documentation.">Topologías, pipelines CI/CD, validaciones, rollback y documentación reproducible.</p>
+        </article>
+        <article class="card">
+          <small data-es="TECNOLOGÍAS UTILIZADAS" data-en="TECHNOLOGIES">TECNOLOGÍAS UTILIZADAS</small>
+          <h3 data-es="Stack técnico" data-en="Technical stack">Stack técnico</h3>
+          <p>Linux, Git, APIs, NETCONF, RESTCONF, Docker, Kubernetes, Batfish & pyATS.</p>
+        </article>
       </div>
     </section>
 
     <section class="section" id="blog">
-      <div class="section-heading"><span>03</span><div><p>CONOCIMIENTO ABIERTO</p><h2>Blog, YouTube y academia</h2></div></div>
+      <div class="section-heading"><span>03</span><div>
+        <p data-es="CONOCIMIENTO ABIERTO" data-en="OPEN KNOWLEDGE">CONOCIMIENTO ABIERTO</p>
+        <h2 data-es="Blog, YouTube y cursos" data-en="Blog, YouTube, and courses">Blog, YouTube y cursos</h2>
+      </div></div>
       <div class="grid three">
-        <article class="card"><small>BLOG</small><h3>Notas técnicas</h3><p>Problemas reales, decisiones, soluciones y lecciones aprendidas.</p></article>
-        <article class="card"><small>YOUTUBE</small><h3>Labs en video</h3><p>Demostraciones y explicaciones cortas orientadas a resultados.</p></article>
-        <article class="card"><small>CURSOS</small><h3>Training en español</h3><p>Futuras rutas prácticas de Network Automation y programabilidad.</p></article>
+        <article class="card">
+          <small data-es="BLOG TÉCNICO" data-en="TECHNICAL BLOG">BLOG TÉCNICO</small>
+          <h3 data-es="Notas técnicas" data-en="Technical notes">Notas técnicas</h3>
+          <p data-es="Problemas reales, decisiones, soluciones y lecciones aprendidas." data-en="Real problems, decisions, solutions, and lessons learned.">Problemas reales, decisiones, soluciones y lecciones aprendidas.</p>
+        </article>
+        <article class="card">
+          <small data-es="CANAL DE YOUTUBE" data-en="YOUTUBE CHANNEL">CANAL DE YOUTUBE</small>
+          <h3 data-es="Labs en video" data-en="Labs on video">Labs en video</h3>
+          <p data-es="Demostraciones y explicaciones cortas orientadas a resultados." data-en="Short demonstrations and explanations focused on practical results.">Demostraciones y explicaciones cortas orientadas a resultados.</p>
+        </article>
+        <article class="card">
+          <small data-es="SECCIÓN DE CURSOS" data-en="COURSES">SECCIÓN DE CURSOS</small>
+          <h3 data-es="Training en español" data-en="Training in Spanish">Training en español</h3>
+          <p data-es="Futuras rutas prácticas de Network Automation y programabilidad." data-en="Future hands-on learning paths for Network Automation and programmability.">Futuras rutas prácticas de Network Automation y programabilidad.</p>
+        </article>
       </div>
     </section>
 
     <section class="section contact" id="contacto">
-      <div><p class="eyebrow">CONTACTO Y COMUNIDAD</p><h2>Conectemos.</h2><p>GitHub, GitLab, YouTube, X, Reddit y LinkedIn se agregarán cuando definamos los enlaces finales.</p></div>
+      <div>
+        <p class="eyebrow" data-es="CONTACTO Y LINKEDIN" data-en="CONTACT AND LINKEDIN">CONTACTO Y LINKEDIN</p>
+        <h2 data-es="Conectemos." data-en="Let's connect.">Conectemos.</h2>
+        <p data-es="GitHub, GitLab, YouTube, X, Reddit y LinkedIn se agregarán cuando definamos los enlaces finales." data-en="GitHub, GitLab, YouTube, X, Reddit, and LinkedIn will be added when the final links are confirmed.">GitHub, GitLab, YouTube, X, Reddit y LinkedIn se agregarán cuando definamos los enlaces finales.</p>
+      </div>
       <a class="button primary" href="https://github.com/andersonmavi30">GitHub ↗</a>
     </section>
   </main>
 
-  <footer><span>andersonmavi30.github.io</span><span>© <span id="year"></span> Anderson Martínez</span></footer>
+  <footer>
+    <span>andersonmavi30.github.io</span>
+    <span>© <span id="year"></span> Anderson Martínez</span>
+  </footer>
 </body>
 </html>
