@@ -344,16 +344,16 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 28px
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border-color: color-mix(in srgb, var(--service) 34%, var(--line));
+  border-color: color-mix(in srgb, var(--service) 52%, var(--line));
   background:
-    radial-gradient(circle at 8% 18%, color-mix(in srgb, var(--service) 18%, transparent), transparent 42%),
-    linear-gradient(135deg, color-mix(in srgb, var(--service) 9%, var(--surface)), var(--surface) 72%);
+    radial-gradient(circle at 8% 18%, color-mix(in srgb, var(--service) 34%, transparent), transparent 46%),
+    linear-gradient(135deg, color-mix(in srgb, var(--service) 18%, var(--surface)), var(--surface) 76%);
 }
 .profile-link::before {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 4px;
+  width: 5px;
   background: var(--service);
   box-shadow: 0 0 18px color-mix(in srgb, var(--service) 62%, transparent);
 }
@@ -366,13 +366,17 @@ html[data-theme="dark"] .profile-link.github {
   --service-ink: #0d1117;
 }
 .profile-link .link-mark {
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
   border: 0;
   background: var(--service);
   color: var(--service-ink);
   box-shadow: 0 8px 20px color-mix(in srgb, var(--service) 28%, transparent);
   font-size: 13px;
+}
+.profile-link strong {
+  color: color-mix(in srgb, var(--service) 72%, var(--text));
+  font-size: 16px;
 }
 .profile-link > span:last-child {
   display: grid;
@@ -401,9 +405,10 @@ html[data-theme="dark"] .profile-link.github {
   --lab-color: var(--accent);
   position: relative;
   overflow: hidden;
-  border-color: color-mix(in srgb, var(--lab-color) 32%, var(--line));
+  border-color: color-mix(in srgb, var(--lab-color) 48%, var(--line));
   background:
-    linear-gradient(90deg, color-mix(in srgb, var(--lab-color) 12%, var(--surface)), var(--surface) 58%);
+    radial-gradient(circle at 5% 50%, color-mix(in srgb, var(--lab-color) 24%, transparent), transparent 36%),
+    linear-gradient(90deg, color-mix(in srgb, var(--lab-color) 18%, var(--surface)), var(--surface) 66%);
 }
 .lab-link.automation-lab { --lab-color: #00a878; }
 .lab-link.fortinet-lab { --lab-color: #e54532; }
