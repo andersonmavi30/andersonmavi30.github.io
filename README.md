@@ -1,6 +1,6 @@
 # andersonmavi30.github.io
 
-Portafolio personal y blog técnico de Anderson Martínez.
+Portafolio personal y blog técnico de Anderson Martínez Virviescas
 
 ## Estructura inicial
 
