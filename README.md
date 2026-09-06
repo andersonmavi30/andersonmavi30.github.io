@@ -1,18 +1,20 @@
 # andersonmavi30.github.io
 
-Portafolio personal y blog técnico de Anderson Martínez Virviescas
+🇨🇴 [Español](README.es.md)
 
-## Estructura inicial
+Personal portfolio and technical website of **Anderson Martinez Virviescas**.
 
-- `index.html`: portada principal.
-- `assets/css/styles.css`: estilos y temas Dark/Light.
-- `assets/js/theme.js`: selector de tema y preferencias del visitante.
-- `assets/images/`: imágenes, diagramas y recursos visuales.
-- `projects/`: casos de estudio y automatizaciones.
-- `labs/`: laboratorios NetDevOps, Network Automation y DevNet.
-- `blog/`: artículos técnicos.
-- `courses/`: cursos y rutas de aprendizaje.
-- `certifications/`: certificaciones y badges.
-- `cv/`: versiones descargables del CV.
+## Initial Structure
 
-Sitio publicado mediante GitHub Pages en <https://andersonmavi30.github.io>.
+- `index.html`: main landing page.
+- `assets/css/styles.css`: site styles and Dark/Light themes.
+- `assets/js/theme.js`: theme selector and visitor preferences.
+- `assets/images/`: images, diagrams, and visual resources.
+- `projects/`: case studies and automation projects.
+- `labs/`: NetDevOps, Network Automation, and DevNet labs.
+- `blog/`: technical articles.
+- `courses/`: courses and learning paths.
+- `certifications/`: certifications and badges.
+- `cv/`: downloadable CV versions.
+
+The site is published through GitHub Pages at <https://andersonmavi30.github.io>.
