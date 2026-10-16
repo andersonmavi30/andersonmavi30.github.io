@@ -1,0 +1,12 @@
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Agentic AI">
+  <path d="M32 10V5" stroke="#111111" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="2.5" fill="#111111"/>
+  <rect x="14" y="14" width="36" height="32" rx="9" stroke="#111111" stroke-width="3.5"/>
+  <path d="M14 25H9C7.34315 25 6 26.3431 6 28V34C6 35.6569 7.34315 37 9 37H14" stroke="#111111" stroke-width="3.5"/>
+  <path d="M50 25H55C56.6569 25 58 26.3431 58 28V34C58 35.6569 56.6569 37 55 37H50" stroke="#111111" stroke-width="3.5"/>
+  <circle cx="25" cy="28" r="3" fill="#111111"/>
+  <circle cx="39" cy="28" r="3" fill="#111111"/>
+  <path d="M24 37C26.2 39 28.8 40 32 40C35.2 40 37.8 39 40 37" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+  <path d="M22 46V52M42 46V52M18 56H46" stroke="#111111" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M27 18L32 14L37 18" stroke="#111111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
