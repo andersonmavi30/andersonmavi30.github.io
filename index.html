@@ -93,4 +93,55 @@ const startTelegramChat=async()=>{telegramStarted=true;telegramChat.innerHTML=""
 const sendTelegramAction=async action=>{const lang=root.dataset.lang==="en"?"en":"es";setTelegramOptions([]);try{const data=await telegramRequest({action,lang});addTelegramBubble(data.reply);if(data.collect){telegramCollectField=data.field;telegramMessage?.focus();return}if(data.connected){telegramConnected=true;telegramCollectField="";startTelegramPolling();return}setTelegramOptions(data.options||[])}catch(e){addTelegramBubble(lang==="es"?"No fue posible procesar la solicitud.":"Unable to process the request.")}};
 telegramFab?.addEventListener("click",()=>setTelegramOpen(!telegramPanel.classList.contains("is-open")));telegramClose?.addEventListener("click",()=>setTelegramOpen(false));document.addEventListener("keydown",e=>{if(e.key==="Escape")setTelegramOpen(false)});
 telegramChatForm?.addEventListener("submit",async e=>{e.preventDefault();const message=telegramMessage.value.trim();if(!message)return;addTelegramBubble(message,"user");telegramMessage.value="";const lang=root.dataset.lang==="en"?"en":"es";try{const payload=telegramCollectField?{action:"collect",lang,value:message}:{action:"message",lang,message};const data=await telegramRequest(payload);addTelegramBubble(data.reply);if(data.collect){telegramCollectField=data.field;telegramMessage?.focus();return}if(data.connected){telegramConnected=true;telegramCollectField="";setTelegramOptions([]);startTelegramPolling();return}setTelegramOptions(data.options||[])}catch(err){addTelegramBubble(lang==="es"?"No fue posible enviar el mensaje.":"Unable to send the message.")}});
-const contactForm=document.getElementById("contactForm"),formStatus=document.getElementById("formStatus");contactForm?.addEventListener("submit",async e=>{e.preventDefault();const submit=contactForm.querySelector(".contact-submit"),label=submit.querySelector("span"),isEs=root.dataset.lang!=="en";submit.disabled=true;label.textContent=isEs?"Enviando…":"Sending…";formStatus.className="form-status";formStatus.textContent="";try{const response=await fetch(contactForm.action,{method:"POST",body:new FormData(contactForm),headers:{Accept:"application/json"}});if(!response.ok)throw new Error("submit");contactForm.reset();formStatus.className="form-status is-success";formStatus.textContent=isEs?"Mensaje enviado correctamente. Gracias por contactarme.":"Message sent successfully. Thank you for reaching out."}catch(error){formStatus.className="form-status is-error";formStatus.textContent=isEs?"No fue posible enviar el mensaje. Inténtalo nuevamente.":"The message could not be sent. Please try again."}finally{submit.disabled=false;label.textContent=isEs?"Enviar mensaje":"Send message"}});const stackWindow=document.querySelector(".stack-window"),stackGroup=document.querySelector(".stack-group"),stackCard=document.querySelector(".stack-item"),stackPrev=document.getElementById("stackPrev"),stackNext=document.getElementById("stackNext");let stackPosition=0,stackNudge=0,stackLast=performance.now();const stackStep=()=>stackCard?stackCard.getBoundingClientRect().width+14:182;const normalizeStack=()=>{const width=stackGroup?.scrollWidth||0;if(!width)return;while(stackPosition>=width)stackPosition-=width;while(stackPosition<0)stackPosition+=width};const animateStack=now=>{const delta=Math.min(now-stackLast,50);stackLast=now;if(!document.hidden&&stackWindow&&stackGroup){const ease=stackNudge*Math.min(.14,delta/90);stackNudge-=ease;stackPosition+=delta*.03+ease;normalizeStack();stackWindow.scrollLeft=stackPosition}requestAnimationFrame(animateStack)};const nudgeStack=direction=>{stackNudge+=direction*stackStep()};stackPrev?.addEventListener("click",()=>nudgeStack(-1));stackNext?.addEventListener("click",()=>nudgeStack(1));window.addEventListener("resize",()=>{stackPosition=stackWindow?.scrollLeft||0;normalizeStack()});requestAnimationFrame(animateStack)})();</script></body></html>
+const contactForm=document.getElementById("contactForm"),formStatus=document.getElementById("formStatus");contactForm?.addEventListener("submit",async e=>{e.preventDefault();const submit=contactForm.querySelector(".contact-submit"),label=submit.querySelector("span"),isEs=root.dataset.lang!=="en";submit.disabled=true;label.textContent=isEs?"Enviando…":"Sending…";formStatus.className="form-status";formStatus.textContent="";try{const response=await fetch(contactForm.action,{method:"POST",body:new FormData(contactForm),headers:{Accept:"application/json"}});if(!response.ok)throw new Error("submit");contactForm.reset();formStatus.className="form-status is-success";formStatus.textContent=isEs?"Mensaje enviado correctamente. Gracias por contactarme.":"Message sent successfully. Thank you for reaching out."}catch(error){formStatus.className="form-status is-error";formStatus.textContent=isEs?"No fue posible enviar el mensaje. Inténtalo nuevamente.":"The message could not be sent. Please try again."}finally{submit.disabled=false;label.textContent=isEs?"Enviar mensaje":"Send message"}});const stackWindow=document.querySelector(".stack-window"),stackGroup=document.querySelector(".stack-group"),stackCard=document.querySelector(".stack-item"),stackPrev=document.getElementById("stackPrev"),stackNext=document.getElementById("stackNext");let stackPosition=0,stackNudge=0,stackLast=performance.now();const stackStep=()=>stackCard?stackCard.getBoundingClientRect().width+14:182;const normalizeStack=()=>{const width=stackGroup?.scrollWidth||0;if(!width)return;while(stackPosition>=width)stackPosition-=width;while(stackPosition<0)stackPosition+=width};const animateStack=now=>{const delta=Math.min(now-stackLast,50);stackLast=now;if(!document.hidden&&stackWindow&&stackGroup){const ease=stackNudge*Math.min(.14,delta/90);stackNudge-=ease;stackPosition+=delta*.03+ease;normalizeStack();stackWindow.scrollLeft=stackPosition}requestAnimationFrame(animateStack)};const nudgeStack=direction=>{stackNudge+=direction*stackStep()};stackPrev?.addEventListener("click",()=>nudgeStack(-1));stackNext?.addEventListener("click",()=>nudgeStack(1));window.addEventListener("resize",()=>{stackPosition=stackWindow?.scrollLeft||0;normalizeStack()});requestAnimationFrame(animateStack)})();</script><!-- data-fallback-bound-marker -->
+<script>
+(() => {
+  const fab = document.getElementById("telegramFab");
+  const panel = document.getElementById("telegramPanel");
+  const close = document.getElementById("telegramClose");
+
+  if (fab && panel && !fab.dataset.fallbackBound) {
+    fab.dataset.fallbackBound = "1";
+    fab.addEventListener("click", () => {
+      const open = !panel.classList.contains("is-open");
+      panel.classList.toggle("is-open", open);
+      panel.setAttribute("aria-hidden", String(!open));
+      fab.setAttribute("aria-expanded", String(open));
+    });
+  }
+
+  if (close && panel && !close.dataset.fallbackBound) {
+    close.dataset.fallbackBound = "1";
+    close.addEventListener("click", () => {
+      panel.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+      fab?.setAttribute("aria-expanded", "false");
+    });
+  }
+
+  const win = document.querySelector(".stack-window");
+  const group = document.querySelector(".stack-group");
+
+  if (win && group && !win.dataset.fallbackAnimated) {
+    win.dataset.fallbackAnimated = "1";
+    let pos = win.scrollLeft || 0;
+    let last = performance.now();
+
+    const tick = now => {
+      const dt = Math.min(now - last, 50);
+      last = now;
+      const width = group.scrollWidth;
+
+      if (width > 0 && !document.hidden) {
+        pos += dt * 0.03;
+        if (pos >= width) pos -= width;
+        win.scrollLeft = pos;
+      }
+
+      requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  }
+})();
+</script></body></html>
