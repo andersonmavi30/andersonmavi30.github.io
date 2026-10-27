@@ -7,8 +7,9 @@
  */
 import { DurableObject } from "cloudflare:workers";
 import legacy from "./telegram-worker.js";
+import { previewHTML } from "./staging-preview.js";
 
-const allowed=new Set(["https://andersonmvnetworks.com","https://www.andersonmvnetworks.com","https://andersonmavi30.github.io"]);
+const allowed=new Set(["https://andersonmvnetworks.com","https://www.andersonmvnetworks.com","https://andersonmavi30.github.io","https://andersonmv-telegram-bot-staging.andersonmavi30.workers.dev"]);
 const ttl=24*60*60*1000, cats=new Set(["projects","consulting","collaborations","support"]);
 const fields=["name","email","phone","description"];
 const safe=(s,n=1500)=>String(s??"").replace(/[<>]/g,"").trim().slice(0,n);
@@ -88,6 +89,7 @@ export default {
   async fetch(request,env) {
     const url=new URL(request.url);
     try{
+      if(url.pathname==="/chat-preview"&&request.method==="GET")return new Response(previewHTML,{status:200,headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"no-store","X-Robots-Tag":"noindex,nofollow","Referrer-Policy":"no-referrer","X-Content-Type-Options":"nosniff","Content-Security-Policy":"default-src 'none'; connect-src 'self' wss://andersonmv-telegram-bot-staging.andersonmavi30.workers.dev; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'"}});
       if(url.pathname==="/webchat/v2"||url.pathname==="/webchat/v2/ws")return web(request,env,url);
       if(url.pathname==="/"&&request.method==="POST")return webhook(request,env);
       return legacy.fetch(request,env);
