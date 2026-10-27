@@ -1,0 +1,38 @@
+{
+  "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
+  "name": "andersonmv-telegram-bot",
+  "main": "./durable-worker.js",
+  "compatibility_date": "2026-10-26",
+  "keep_vars": true,
+  "observability": {
+    "enabled": true
+  },
+  "kv_namespaces": [
+    {
+      "binding": "TELEGRAM_SESSIONS",
+      "id": "1ecc82418113400d8200ca2117303e96"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CHAT_ROOMS",
+        "class_name": "ChatRoom"
+      },
+      {
+        "name": "ADMIN_ROUTER",
+        "class_name": "AdminRouter"
+      }
+    ]
+  },
+  "exports": {
+    "ChatRoom": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    },
+    "AdminRouter": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
+  }
+}
