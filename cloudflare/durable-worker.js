@@ -250,7 +250,11 @@ async function webhook(request,env){
       const id=data.slice(6);
       if(!valid(id))return legacy.fetch(request,env);
       const selected=await toObject(room(env,id),"/admin",{type:"prepare"});
-      if(!selected.body.ok)return legacy.fetch(request,env); // legacy KV conversation
+      if(!selected.body.ok){
+        // Switching to a legacy contact must clear any previously selected v2 chat.
+        await toObject(router(env),"/route",{type:"clear"});
+        return legacy.fetch(request,env);
+      } // legacy KV conversation
       await tg(env,"answerCallbackQuery",{callback_query_id:cb.id});
       await toObject(router(env),"/route",{type:"select",id});
       await tg(env,"sendMessage",{chat_id:adminId,text:"✍️ Respondiendo a "+selected.body.name+". Escribe tu mensaje. /cancelar para cerrar."});
