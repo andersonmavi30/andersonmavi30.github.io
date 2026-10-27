@@ -42,7 +42,7 @@ SQLite-backed Durable Objects are supported on Workers Free. Service remains sub
 2. From a local checkout of this repo, deploy only the new Worker (Worker name is the existing \`andersonmv-telegram-bot\`):
 
    \`\`\`bash
-   npx wrangler@latest deploy --config cloudflare/wrangler.jsonc
+   npx wrangler@latest deploy --config cloudflare/wrangler.production.jsonc
    \`\`\`
 
    The configuration declares \`CHAT_ROOMS\` and \`ADMIN_ROUTER\` as **SQLite-backed** Durable Objects. It also retains the existing \`TELEGRAM_SESSIONS\` KV binding to keep \`/webchat\` and \`/webchat/poll\` working during the cutover. Existing secrets are expected to remain on the Worker in Cloudflare. **Check the preview of the configuration before deployment.**
