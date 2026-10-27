@@ -23,6 +23,8 @@
 
   const lang=()=>root.dataset.lang==="en"?"en":"es";
   const tr=(es,en)=>lang()==="en"?en:es;
+  const welcome=()=>tr("Hola 👋 Soy el asistente de Anderson MV Networks. ¿En qué puedo ayudarte?",
+    "Hi 👋 I'm Anderson MV Networks' assistant. How can I help you?");
   const labels=()=>[
     {id:"projects",label:tr("🚀 Proyectos","🚀 Projects")},
     {id:"consulting",label:tr("💼 Consultoría","💼 Consulting")},
@@ -64,6 +66,7 @@
     if(id!=null){node.dataset.messageId=String(id);lastId=Math.max(lastId,id)}
     chat.appendChild(node);
     chat.scrollTop=chat.scrollHeight;
+    return node;
   }
   function history(items) {
     if(!Array.isArray(items)||!items.length)return;
@@ -148,8 +151,8 @@
     session=loadSession();
     chat.innerHTML="";
     setMenu([]);
-    bubble(tr("Hola 👋 Soy el asistente de Anderson MV Networks. ¿En qué puedo ayudarte?",
-      "Hi 👋 I'm Anderson MV Networks' assistant. How can I help you?"));
+    const greeting=bubble(welcome());
+    if(greeting)greeting.dataset.chatGreeting="true";
     try{
       const data=await call({action:"start"},true);
       if(data.sessionId&&data.token){
@@ -217,6 +220,8 @@
   document.addEventListener("visibilitychange",()=>{if(!document.hidden&&started)connect()});
   window.addEventListener("online",()=>{if(started)connect()});
   const syncLanguage=()=>{
+    const greeting=chat.querySelector('[data-chat-greeting="true"]');
+    if(greeting)greeting.textContent=welcome();
     updateInputHint();
     if(typing&&!typing.hidden)typing.textContent=tr("Anderson está escribiendo…","Anderson is typing…");
     setStatus();
