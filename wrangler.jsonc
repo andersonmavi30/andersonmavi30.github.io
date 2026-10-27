@@ -1,0 +1,33 @@
+{
+  "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
+  "name": "andersonmv-telegram-bot-staging",
+  "main": "./cloudflare/durable-worker.js",
+  "compatibility_date": "2026-10-26",
+  "keep_vars": true,
+  "observability": {
+    "enabled": true
+  },
+  "kv_namespaces": [],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CHAT_ROOMS",
+        "class_name": "ChatRoom"
+      },
+      {
+        "name": "ADMIN_ROUTER",
+        "class_name": "AdminRouter"
+      }
+    ]
+  },
+  "exports": {
+    "ChatRoom": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    },
+    "AdminRouter": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
+  }
+}
