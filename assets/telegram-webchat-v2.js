@@ -88,7 +88,7 @@
     if(!typing)return;
     typing.hidden=!active;
     if(active){
-      typing.textContent=tr("Anderson está preparando una respuesta…","Anderson is preparing a reply…");
+      typing.textContent=tr("Anderson está escribiendo…","Anderson is typing…");
       typingTimer=setTimeout(()=>{typing.hidden=true},Math.min(25000,Math.max(1000,until?until-Date.now():25000)));
     }
   }
@@ -218,7 +218,7 @@
   window.addEventListener("online",()=>{if(started)connect()});
   const syncLanguage=()=>{
     updateInputHint();
-    if(typing&&!typing.hidden)typing.textContent=tr("Anderson está preparando una respuesta…","Anderson is preparing a reply…");
+    if(typing&&!typing.hidden)typing.textContent=tr("Anderson está escribiendo…","Anderson is typing…");
     setStatus();
     if(started&&!connected&&!pendingField)setMenu(labels());
   };
