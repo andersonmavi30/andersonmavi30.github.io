@@ -34,5 +34,12 @@
       "type": "durable-object",
       "storage": "sqlite"
     }
+  },
+  "secrets": {
+    "required": [
+      "TELEGRAM_BOT_TOKEN",
+      "TELEGRAM_ADMIN_CHAT_ID",
+      "TELEGRAM_WEBHOOK_SECRET"
+    ]
   }
 }
