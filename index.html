@@ -75,73 +75,394 @@
 <p class="contact-note" data-es="Tus datos se usarán únicamente para responder este mensaje." data-en="Your details will only be used to respond to this message.">Tus datos se usarán únicamente para responder este mensaje.</p>
 <button class="contact-submit" type="submit"><span data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</span></button>
 <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-</form></div></footer><script>(()=>{const root=document.documentElement;const langButtons=[document.getElementById("lang"),document.getElementById("langTop")].filter(Boolean);const themeButtons=[document.getElementById("theme"),document.getElementById("themeTop")].filter(Boolean);const language=x=>{root.lang=x;root.dataset.lang=x;document.querySelectorAll("[data-es][data-en]").forEach(e=>e.innerHTML=e.dataset[x]);document.querySelectorAll("[data-label-es][data-label-en]").forEach(e=>e.setAttribute("aria-label",e.dataset[x==="es"?"labelEs":"labelEn"]));document.querySelectorAll("[data-href-es][data-href-en]").forEach(e=>e.setAttribute("href",e.dataset[x==="es"?"hrefEs":"hrefEn"]));document.querySelectorAll("[data-placeholder-es][data-placeholder-en]").forEach(e=>e.setAttribute("placeholder",x==="es"?e.dataset.placeholderEs:e.dataset.placeholderEn));langButtons.forEach(b=>b.textContent=x==="es"?"EN":"ES");document.title=x==="es"?"Anderson Martinez Virviescas | Portafolio técnico":"Anderson Martinez Virviescas | Technical portfolio";localStorage.setItem("amv-lang",x)};const theme=x=>{root.dataset.theme=x;localStorage.setItem("amv-theme",x)};langButtons.forEach(b=>b.addEventListener("click",()=>language(root.dataset.lang==="es"?"en":"es")));themeButtons.forEach(b=>b.addEventListener("click",()=>theme(root.dataset.theme==="light"?"dark":"light")));language(localStorage.getItem("amv-lang")||"es");theme(localStorage.getItem("amv-theme")||"light");document.querySelectorAll(".year").forEach(e=>e.textContent=new Date().getFullYear());
-const TELEGRAM_WEBCHAT_URL="https://andersonmv-telegram-bot.andersonmavi30.workers.dev/webchat";
-const TELEGRAM_WEBCHAT_POLL_URL="https://andersonmv-telegram-bot.andersonmavi30.workers.dev/webchat/poll";
-const telegramFab=document.getElementById("telegramFab"),telegramPanel=document.getElementById("telegramPanel"),telegramClose=document.getElementById("telegramClose"),telegramChat=document.getElementById("telegramChat"),telegramOptions=document.getElementById("telegramOptions"),telegramChatForm=document.getElementById("telegramChatForm"),telegramMessage=document.getElementById("telegramMessage");
-const makeTelegramSessionId=()=>{if(window.crypto?.randomUUID)return crypto.randomUUID();return "web-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2)};
-let telegramSessionId=localStorage.getItem("amv-telegram-session")||makeTelegramSessionId();
-localStorage.setItem("amv-telegram-session",telegramSessionId);
-let telegramStarted=false,telegramCollectField="",telegramConnected=false,telegramLastAdminTs=0,telegramPollTimer=null;
-const setTelegramOpen=open=>{telegramPanel?.classList.toggle("is-open",open);telegramPanel?.setAttribute("aria-hidden",String(!open));telegramFab?.setAttribute("aria-expanded",String(open));if(open&&!telegramStarted)startTelegramChat()};
-const addTelegramBubble=(text,type="bot")=>{const el=document.createElement("div");el.className=`telegram-bubble ${type}`;el.textContent=text;telegramChat.appendChild(el);telegramChat.scrollTop=telegramChat.scrollHeight};
-const setTelegramOptions=options=>{telegramOptions.innerHTML="";(options||[]).forEach(option=>{const b=document.createElement("button");b.type="button";b.textContent=option.label;b.addEventListener("click",()=>sendTelegramAction(option.id));telegramOptions.appendChild(b)})};
-const telegramRequest=async payload=>{const response=await fetch(TELEGRAM_WEBCHAT_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...payload,sessionId:telegramSessionId})});if(!response.ok)throw new Error("webchat");return response.json()};
-const telegramPoll=async()=>{if(!telegramConnected)return;try{const response=await fetch(TELEGRAM_WEBCHAT_POLL_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sessionId:telegramSessionId,lastTs:telegramLastAdminTs})});if(!response.ok)return;const data=await response.json();(data.messages||[]).forEach(msg=>{if(msg.ts>telegramLastAdminTs){telegramLastAdminTs=msg.ts;addTelegramBubble("Anderson: "+msg.text,"bot")}})}catch(e){}};
-const startTelegramPolling=()=>{if(telegramPollTimer)return;telegramPollTimer=setInterval(telegramPoll,1000);telegramPoll()};
-const startTelegramChat=async()=>{telegramStarted=true;telegramChat.innerHTML="";telegramOptions.innerHTML="";const lang=root.dataset.lang==="en"?"en":"es";try{const data=await telegramRequest({action:"start",lang});addTelegramBubble(data.reply);setTelegramOptions(data.options)}catch(e){addTelegramBubble(lang==="es"?"No fue posible conectar con el asistente. Inténtalo nuevamente.":"Unable to connect to the assistant. Please try again.")}};
-const sendTelegramAction=async action=>{const lang=root.dataset.lang==="en"?"en":"es";setTelegramOptions([]);try{const data=await telegramRequest({action,lang});addTelegramBubble(data.reply);if(data.collect){telegramCollectField=data.field;telegramMessage?.focus();return}if(data.connected){telegramConnected=true;telegramCollectField="";startTelegramPolling();return}setTelegramOptions(data.options||[])}catch(e){addTelegramBubble(lang==="es"?"No fue posible procesar la solicitud.":"Unable to process the request.")}};
-telegramFab?.addEventListener("click",()=>setTelegramOpen(!telegramPanel.classList.contains("is-open")));telegramClose?.addEventListener("click",()=>setTelegramOpen(false));document.addEventListener("keydown",e=>{if(e.key==="Escape")setTelegramOpen(false)});
-telegramChatForm?.addEventListener("submit",async e=>{e.preventDefault();const message=telegramMessage.value.trim();if(!message)return;addTelegramBubble(message,"user");telegramMessage.value="";const lang=root.dataset.lang==="en"?"en":"es";try{const payload=telegramCollectField?{action:"collect",lang,value:message}:{action:"message",lang,message};const data=await telegramRequest(payload);addTelegramBubble(data.reply);if(data.collect){telegramCollectField=data.field;telegramMessage?.focus();return}if(data.connected){telegramConnected=true;telegramCollectField="";setTelegramOptions([]);startTelegramPolling();return}setTelegramOptions(data.options||[])}catch(err){addTelegramBubble(lang==="es"?"No fue posible enviar el mensaje.":"Unable to send the message.")}});
-const contactForm=document.getElementById("contactForm"),formStatus=document.getElementById("formStatus");contactForm?.addEventListener("submit",async e=>{e.preventDefault();const submit=contactForm.querySelector(".contact-submit"),label=submit.querySelector("span"),isEs=root.dataset.lang!=="en";submit.disabled=true;label.textContent=isEs?"Enviando…":"Sending…";formStatus.className="form-status";formStatus.textContent="";try{const response=await fetch(contactForm.action,{method:"POST",body:new FormData(contactForm),headers:{Accept:"application/json"}});if(!response.ok)throw new Error("submit");contactForm.reset();formStatus.className="form-status is-success";formStatus.textContent=isEs?"Mensaje enviado correctamente. Gracias por contactarme.":"Message sent successfully. Thank you for reaching out."}catch(error){formStatus.className="form-status is-error";formStatus.textContent=isEs?"No fue posible enviar el mensaje. Inténtalo nuevamente.":"The message could not be sent. Please try again."}finally{submit.disabled=false;label.textContent=isEs?"Enviar mensaje":"Send message"}});const stackWindow=document.querySelector(".stack-window"),stackGroup=document.querySelector(".stack-group"),stackCard=document.querySelector(".stack-item"),stackPrev=document.getElementById("stackPrev"),stackNext=document.getElementById("stackNext");let stackPosition=0,stackNudge=0,stackLast=performance.now();const stackStep=()=>stackCard?stackCard.getBoundingClientRect().width+14:182;const normalizeStack=()=>{const width=stackGroup?.scrollWidth||0;if(!width)return;while(stackPosition>=width)stackPosition-=width;while(stackPosition<0)stackPosition+=width};const animateStack=now=>{const delta=Math.min(now-stackLast,50);stackLast=now;if(!document.hidden&&stackWindow&&stackGroup){const ease=stackNudge*Math.min(.14,delta/90);stackNudge-=ease;stackPosition+=delta*.03+ease;normalizeStack();stackWindow.scrollLeft=stackPosition}requestAnimationFrame(animateStack)};const nudgeStack=direction=>{stackNudge+=direction*stackStep()};stackPrev?.addEventListener("click",()=>nudgeStack(-1));stackNext?.addEventListener("click",()=>nudgeStack(1));window.addEventListener("resize",()=>{stackPosition=stackWindow?.scrollLeft||0;normalizeStack()});requestAnimationFrame(animateStack)})();</script><!-- data-fallback-bound-marker -->
-<script>
-(() => {
-  const fab = document.getElementById("telegramFab");
-  const panel = document.getElementById("telegramPanel");
-  const close = document.getElementById("telegramClose");
+</form></div></footer><script>
+(function(){
+  const root=document.documentElement;
 
-  if (fab && panel && !fab.dataset.fallbackBound) {
-    fab.dataset.fallbackBound = "1";
-    fab.addEventListener("click", () => {
-      const open = !panel.classList.contains("is-open");
-      panel.classList.toggle("is-open", open);
-      panel.setAttribute("aria-hidden", String(!open));
-      fab.setAttribute("aria-expanded", String(open));
+  function safeGet(key,fallback){
+    try{return localStorage.getItem(key)||fallback}catch(e){return fallback}
+  }
+  function safeSet(key,value){
+    try{localStorage.setItem(key,value)}catch(e){}
+  }
+
+  const langButtons=[document.getElementById("lang"),document.getElementById("langTop")].filter(Boolean);
+  const themeButtons=[document.getElementById("theme"),document.getElementById("themeTop")].filter(Boolean);
+
+  function applyLanguage(lang){
+    root.lang=lang;
+    root.dataset.lang=lang;
+
+    document.querySelectorAll("[data-es][data-en]").forEach(function(el){
+      el.innerHTML=lang==="es"?el.dataset.es:el.dataset.en;
+    });
+
+    document.querySelectorAll("[data-label-es][data-label-en]").forEach(function(el){
+      el.setAttribute("aria-label",lang==="es"?el.dataset.labelEs:el.dataset.labelEn);
+    });
+
+    document.querySelectorAll("[data-href-es][data-href-en]").forEach(function(el){
+      el.setAttribute("href",lang==="es"?el.dataset.hrefEs:el.dataset.hrefEn);
+    });
+
+    document.querySelectorAll("[data-placeholder-es][data-placeholder-en]").forEach(function(el){
+      el.setAttribute("placeholder",lang==="es"?el.dataset.placeholderEs:el.dataset.placeholderEn);
+    });
+
+    langButtons.forEach(function(btn){btn.textContent=lang==="es"?"EN":"ES"});
+    document.title=lang==="es"
+      ?"Anderson Martinez Virviescas | Portafolio técnico"
+      :"Anderson Martinez Virviescas | Technical portfolio";
+
+    safeSet("amv-lang",lang);
+  }
+
+  function applyTheme(theme){
+    root.dataset.theme=theme;
+    safeSet("amv-theme",theme);
+  }
+
+  langButtons.forEach(function(btn){
+    btn.addEventListener("click",function(){
+      applyLanguage(root.dataset.lang==="es"?"en":"es");
+    });
+  });
+
+  themeButtons.forEach(function(btn){
+    btn.addEventListener("click",function(){
+      applyTheme(root.dataset.theme==="light"?"dark":"light");
+    });
+  });
+
+  applyLanguage(safeGet("amv-lang","es"));
+  applyTheme(safeGet("amv-theme","light"));
+  document.querySelectorAll(".year").forEach(function(el){
+    el.textContent=new Date().getFullYear();
+  });
+
+  // ====================================================
+  // TELEGRAM WEB CHAT
+  // ====================================================
+
+  const WEBCHAT_URL="https://andersonmv-telegram-bot.andersonmavi30.workers.dev/webchat";
+  const POLL_URL="https://andersonmv-telegram-bot.andersonmavi30.workers.dev/webchat/poll";
+
+  const fab=document.getElementById("telegramFab");
+  const panel=document.getElementById("telegramPanel");
+  const closeBtn=document.getElementById("telegramClose");
+  const chat=document.getElementById("telegramChat");
+  const options=document.getElementById("telegramOptions");
+  const form=document.getElementById("telegramChatForm");
+  const input=document.getElementById("telegramMessage");
+
+  function makeSessionId(){
+    if(window.crypto && typeof window.crypto.randomUUID==="function"){
+      return window.crypto.randomUUID();
+    }
+    return "web-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2);
+  }
+
+  let sessionId=safeGet("amv-telegram-session","");
+  if(!sessionId){
+    sessionId=makeSessionId();
+    safeSet("amv-telegram-session",sessionId);
+  }
+
+  let started=false;
+  let collectField="";
+  let connected=false;
+  let lastAdminTs=0;
+  let pollTimer=null;
+
+  function setOpen(open){
+    if(!panel||!fab)return;
+    panel.classList.toggle("is-open",open);
+    panel.setAttribute("aria-hidden",String(!open));
+    fab.setAttribute("aria-expanded",String(open));
+
+    if(open && !started){
+      startChat();
+    }
+  }
+
+  function addBubble(text,type){
+    if(!chat)return;
+    const el=document.createElement("div");
+    el.className="telegram-bubble "+(type||"bot");
+    el.textContent=text;
+    chat.appendChild(el);
+    chat.scrollTop=chat.scrollHeight;
+  }
+
+  function setOptions(items){
+    if(!options)return;
+    options.innerHTML="";
+    (items||[]).forEach(function(item){
+      const btn=document.createElement("button");
+      btn.type="button";
+      btn.textContent=item.label;
+      btn.addEventListener("click",function(){
+        sendAction(item.id);
+      });
+      options.appendChild(btn);
     });
   }
 
-  if (close && panel && !close.dataset.fallbackBound) {
-    close.dataset.fallbackBound = "1";
-    close.addEventListener("click", () => {
-      panel.classList.remove("is-open");
-      panel.setAttribute("aria-hidden", "true");
-      fab?.setAttribute("aria-expanded", "false");
+  async function requestWebchat(payload){
+    const response=await fetch(WEBCHAT_URL,{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(Object.assign({},payload,{sessionId:sessionId}))
     });
+    if(!response.ok)throw new Error("webchat");
+    return response.json();
   }
 
-  const win = document.querySelector(".stack-window");
-  const group = document.querySelector(".stack-group");
+  async function poll(){
+    if(!connected)return;
+    try{
+      const response=await fetch(POLL_URL,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({sessionId:sessionId,lastTs:lastAdminTs})
+      });
+      if(!response.ok)return;
+      const data=await response.json();
 
-  if (win && group && !win.dataset.fallbackAnimated) {
-    win.dataset.fallbackAnimated = "1";
-    let pos = win.scrollLeft || 0;
-    let last = performance.now();
+      (data.messages||[]).forEach(function(msg){
+        if(msg.ts>lastAdminTs){
+          lastAdminTs=msg.ts;
+          addBubble("Anderson: "+msg.text,"bot");
+        }
+      });
+    }catch(e){}
+  }
 
-    const tick = now => {
-      const dt = Math.min(now - last, 50);
-      last = now;
-      const width = group.scrollWidth;
+  function startPolling(){
+    if(pollTimer)return;
+    pollTimer=setInterval(poll,1000);
+    poll();
+  }
 
-      if (width > 0 && !document.hidden) {
-        pos += dt * 0.03;
-        if (pos >= width) pos -= width;
-        win.scrollLeft = pos;
+  async function startChat(){
+    started=true;
+    if(chat)chat.innerHTML="";
+    if(options)options.innerHTML="";
+    const lang=root.dataset.lang==="en"?"en":"es";
+
+    try{
+      const data=await requestWebchat({action:"start",lang:lang});
+      addBubble(data.reply,"bot");
+      setOptions(data.options);
+    }catch(e){
+      addBubble(
+        lang==="es"
+          ?"No fue posible conectar con el asistente. Inténtalo nuevamente."
+          :"Unable to connect to the assistant. Please try again.",
+        "bot"
+      );
+    }
+  }
+
+  async function sendAction(action){
+    const lang=root.dataset.lang==="en"?"en":"es";
+    setOptions([]);
+
+    try{
+      const data=await requestWebchat({action:action,lang:lang});
+      addBubble(data.reply,"bot");
+
+      if(data.collect){
+        collectField=data.field||"";
+        if(input)input.focus();
+        return;
       }
 
-      requestAnimationFrame(tick);
-    };
+      if(data.connected){
+        connected=true;
+        collectField="";
+        startPolling();
+        return;
+      }
 
-    requestAnimationFrame(tick);
+      setOptions(data.options||[]);
+    }catch(e){
+      addBubble(
+        lang==="es"
+          ?"No fue posible procesar la solicitud."
+          :"Unable to process the request.",
+        "bot"
+      );
+    }
   }
+
+  if(fab){
+    fab.addEventListener("click",function(){
+      setOpen(!panel.classList.contains("is-open"));
+    });
+  }
+
+  if(closeBtn){
+    closeBtn.addEventListener("click",function(){
+      setOpen(false);
+    });
+  }
+
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape")setOpen(false);
+  });
+
+  if(form){
+    form.addEventListener("submit",async function(e){
+      e.preventDefault();
+
+      const message=input?input.value.trim():"";
+      if(!message)return;
+
+      addBubble(message,"user");
+      input.value="";
+
+      const lang=root.dataset.lang==="en"?"en":"es";
+
+      try{
+        const payload=collectField
+          ?{action:"collect",lang:lang,value:message}
+          :{action:"message",lang:lang,message:message};
+
+        const data=await requestWebchat(payload);
+        addBubble(data.reply,"bot");
+
+        if(data.collect){
+          collectField=data.field||"";
+          input.focus();
+          return;
+        }
+
+        if(data.connected){
+          connected=true;
+          collectField="";
+          setOptions([]);
+          startPolling();
+          return;
+        }
+
+        setOptions(data.options||[]);
+      }catch(e){
+        addBubble(
+          lang==="es"
+            ?"No fue posible enviar el mensaje."
+            :"Unable to send the message.",
+          "bot"
+        );
+      }
+    });
+  }
+
+  // ====================================================
+  // CONTACT FORM
+  // ====================================================
+
+  const contactForm=document.getElementById("contactForm");
+  const formStatus=document.getElementById("formStatus");
+
+  if(contactForm){
+    contactForm.addEventListener("submit",async function(e){
+      e.preventDefault();
+
+      const submit=contactForm.querySelector(".contact-submit");
+      const label=submit?submit.querySelector("span"):null;
+      const isEs=root.dataset.lang!=="en";
+
+      if(submit)submit.disabled=true;
+      if(label)label.textContent=isEs?"Enviando…":"Sending…";
+      if(formStatus){
+        formStatus.className="form-status";
+        formStatus.textContent="";
+      }
+
+      try{
+        const response=await fetch(contactForm.action,{
+          method:"POST",
+          body:new FormData(contactForm),
+          headers:{Accept:"application/json"}
+        });
+
+        if(!response.ok)throw new Error("submit");
+
+        contactForm.reset();
+
+        if(formStatus){
+          formStatus.className="form-status is-success";
+          formStatus.textContent=isEs
+            ?"Mensaje enviado correctamente. Gracias por contactarme."
+            :"Message sent successfully. Thank you for reaching out.";
+        }
+      }catch(error){
+        if(formStatus){
+          formStatus.className="form-status is-error";
+          formStatus.textContent=isEs
+            ?"No fue posible enviar el mensaje. Inténtalo nuevamente."
+            :"The message could not be sent. Please try again.";
+        }
+      }finally{
+        if(submit)submit.disabled=false;
+        if(label)label.textContent=isEs?"Enviar mensaje":"Send message";
+      }
+    });
+  }
+
+  // ====================================================
+  // TECH STACK CAROUSEL
+  // ====================================================
+
+  const stackWindow=document.querySelector(".stack-window");
+  const stackGroup=document.querySelector(".stack-group");
+  const stackCard=document.querySelector(".stack-item");
+  const stackPrev=document.getElementById("stackPrev");
+  const stackNext=document.getElementById("stackNext");
+
+  let stackPosition=stackWindow?stackWindow.scrollLeft:0;
+  let stackNudge=0;
+  let stackLast=performance.now();
+
+  function stackStep(){
+    return stackCard?stackCard.getBoundingClientRect().width+14:182;
+  }
+
+  function normalizeStack(){
+    const width=stackGroup?stackGroup.scrollWidth:0;
+    if(!width)return;
+    while(stackPosition>=width)stackPosition-=width;
+    while(stackPosition<0)stackPosition+=width;
+  }
+
+  function animateStack(now){
+    const delta=Math.min(now-stackLast,50);
+    stackLast=now;
+
+    if(!document.hidden && stackWindow && stackGroup){
+      const ease=stackNudge*Math.min(.14,delta/90);
+      stackNudge-=ease;
+      stackPosition+=delta*.03+ease;
+      normalizeStack();
+      stackWindow.scrollLeft=stackPosition;
+    }
+
+    requestAnimationFrame(animateStack);
+  }
+
+  function nudgeStack(direction){
+    stackNudge+=direction*stackStep();
+  }
+
+  if(stackPrev)stackPrev.addEventListener("click",function(){nudgeStack(-1)});
+  if(stackNext)stackNext.addEventListener("click",function(){nudgeStack(1)});
+
+  window.addEventListener("resize",function(){
+    stackPosition=stackWindow?stackWindow.scrollLeft:0;
+    normalizeStack();
+  });
+
+  requestAnimationFrame(animateStack);
 })();
 </script></body></html>
