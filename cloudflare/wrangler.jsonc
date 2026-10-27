@@ -1,18 +1,13 @@
 {
   "$schema": "https://unpkg.com/wrangler@latest/config-schema.json",
-  "name": "andersonmv-telegram-bot",
+  "name": "andersonmv-telegram-bot-staging",
   "main": "./durable-worker.js",
   "compatibility_date": "2026-10-26",
   "keep_vars": true,
   "observability": {
     "enabled": true
   },
-  "kv_namespaces": [
-    {
-      "binding": "TELEGRAM_SESSIONS",
-      "id": "1ecc82418113400d8200ca2117303e96"
-    }
-  ],
+  "kv_namespaces": [],
   "durable_objects": {
     "bindings": [
       {
