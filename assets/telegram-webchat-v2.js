@@ -42,6 +42,13 @@
   function forgetSession() {
     session=null;try{localStorage.removeItem(storageKey)}catch(e){}
   }
+  function updateInputHint(){
+    const phone=pendingField==="phone";
+    input.placeholder=phone
+      ?tr("Ej: +57312000030","e.g. +57312000030")
+      :tr(input.dataset.placeholderEs||"Escribe un mensaje…",input.dataset.placeholderEn||"Write a message…");
+    input.setAttribute("inputmode",phone?"tel":"text");
+  }
   function setStatus(){
     if (!status)return;
     status.textContent=ws?.readyState===WebSocket.OPEN
@@ -103,6 +110,7 @@
     if(data.type==="snapshot"){
       if(data.history?.length)history(data.history);
       connected=Boolean(data.connected);pendingField=data.collect||null;
+      updateInputHint();
       setMenu(connected||pendingField?[]:labels());
       showTyping(Boolean(data.typing));
     }else if(data.type==="message"&&data.message){
@@ -150,6 +158,7 @@
       if(data.history?.length)history(data.history);
       connected=Boolean(data.connected);
       pendingField=data.collect||null;
+      updateInputHint();
       setMenu(connected||pendingField?[]:data.options||labels());
       showTyping(Boolean(data.typing));
       connect();
@@ -168,7 +177,8 @@
       bubble(data.reply);
       if(data.collect){pendingField=data.collect;input.focus()}
       else if(data.connected){connected=true;pendingField=null}
-      else setMenu(data.options||labels());
+      updateInputHint();
+      if(!data.collect&&!data.connected)setMenu(data.options||labels());
     }catch(e){
       bubble(tr("Ocurrió un error. Inténtalo nuevamente.","An error occurred. Please try again."));
       setMenu(labels());
@@ -188,6 +198,7 @@
       if(data.collect){pendingField=data.collect}
       else if(data.connected){pendingField=null;connected=true;setMenu([])}
       else setMenu(data.options||labels());
+      updateInputHint();
     }catch(e){
       bubble(tr("No se pudo enviar el mensaje. Inténtalo nuevamente.",
         "Message could not be sent. Please try again."));
@@ -206,7 +217,7 @@
   document.addEventListener("visibilitychange",()=>{if(!document.hidden&&started)connect()});
   window.addEventListener("online",()=>{if(started)connect()});
   const syncLanguage=()=>{
-    input.placeholder=tr(input.dataset.placeholderEs||"Escribe un mensaje…",input.dataset.placeholderEn||"Write a message…");
+    updateInputHint();
     if(typing&&!typing.hidden)typing.textContent=tr("Anderson está preparando una respuesta…","Anderson is preparing a reply…");
     setStatus();
     if(started&&!connected&&!pendingField)setMenu(labels());

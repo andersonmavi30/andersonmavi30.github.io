@@ -32,9 +32,9 @@ const category=(l,a)=>({
   support:txt(l,"🛠️ Describe el problema o tecnología involucrada.","🛠️ Describe the issue or technology involved.")
 })[a]||"";
 const prompt=(l,f)=>({
-  name:txt(l,"👤 Para hablar con Anderson, ¿cómo te llamas?","👤 To talk to Anderson, what's your name?"),
+  name:txt(l,"👤 Para registrar tus datos de contacto, ¿puedes indicarme tu nombre completo?","👤 To register your contact details, could you provide your full name?"),
   email:txt(l,"Gracias. ¿Cuál es tu correo electrónico?","Thanks. What's your email address?"),
-  phone:txt(l,"¿Cuál es tu teléfono? Es opcional; escribe «omitir» si prefieres.","What's your phone number? Optional; type «skip» if you prefer."),
+  phone:txt(l,"¿Cuál es tu teléfono de contacto?","What's your contact phone number?"),
   description:txt(l,"Por último, describe brevemente lo que necesitas.","Finally, briefly describe what you need.")
 })[f]||"";
 const replyMarkup=id=>({inline_keyboard:[[{text:"💬 Responder",callback_data:"reply:"+id}]]});
