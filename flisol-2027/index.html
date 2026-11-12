@@ -32,9 +32,14 @@ h1 span{color:var(--accent)}
 .subtitle{font-size:clamp(1.07rem,2.4vw,1.45rem);max-width:750px;margin:28px 0 30px;color:var(--muted);text-wrap:balance}
 .status{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid var(--accent);border-radius:50px;background:var(--surface);font-weight:700}
 .status svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.construction-art{display:none;width:min(530px,96vw);height:auto;margin:16px auto 0;overflow:visible}
-[data-theme="light"] .status{display:none}
-[data-theme="light"] .construction-art{display:block}
+.construction-art{display:block;width:min(530px,96vw);height:auto;margin:16px auto 0;overflow:visible}
+.status{display:none}
+[data-theme="dark"] .construction-art .art-shadow{fill:#0c354b;opacity:.6}
+[data-theme="dark"] .construction-art .art-screen{fill:#173f58}
+[data-theme="dark"] .construction-art .art-toolbar{fill:#295d77}
+[data-theme="dark"] .construction-art .art-heading{fill:#f4fbff}
+[data-theme="dark"] .construction-art .art-gear{stroke:#45839b}
+[data-theme="dark"] .construction-art .art-gear-inner{stroke:#6ca7bc}
 [data-theme="light"] body{background:linear-gradient(132deg,transparent 0 12%,rgba(0,161,201,.035) 12% 16%,transparent 16% 79%,rgba(0,161,201,.035) 79% 83%,transparent 83%),radial-gradient(circle at 50% 35%,rgba(0,161,201,.075),transparent 63%),var(--bg)}
 [data-theme="light"] .brand-mark{color:#fff;background:#09233b;border-color:#09233b}
 .note{max-width:570px;color:var(--muted);font-size:14px;margin:24px 0 0}
@@ -62,18 +67,18 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
 <div class="status" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 4-4m8-8 4-4M3 3h18M3 21h18M7 3v4l5 5-5 5v4M17 3v4l-5 5 5 5v4"/></svg><span data-es="Página en construcción" data-en="Page under construction">Página en construcción</span></div>
 <svg class="construction-art" viewBox="0 0 600 260" role="img" aria-label="Página en construcción" xmlns="http://www.w3.org/2000/svg">
 <title>Página en construcción</title>
-<ellipse cx="300" cy="237" rx="262" ry="15" fill="#d2e7f1" opacity=".8"/>
+<ellipse class="art-shadow" cx="300" cy="237" rx="262" ry="15" fill="#d2e7f1" opacity=".8"/>
 <!-- Laptop -->
 <rect x="145" y="30" width="310" height="193" rx="15" fill="#092e49" stroke="#1b6b8e" stroke-width="5"/>
-<rect x="158" y="43" width="284" height="166" rx="6" fill="#e7f7fc"/>
-<rect x="158" y="43" width="284" height="21" rx="6" fill="#a7d5e7"/>
+<rect class="art-screen" x="158" y="43" width="284" height="166" rx="6" fill="#e7f7fc"/>
+<rect class="art-toolbar" x="158" y="43" width="284" height="21" rx="6" fill="#a7d5e7"/>
 <circle cx="174" cy="53" r="4" fill="#ff715e"/><circle cx="188" cy="53" r="4" fill="#ffcc54"/><circle cx="202" cy="53" r="4" fill="#54c9bb"/>
-<path d="M255 119a45 45 0 0 1 91 0" fill="none" stroke="#a6c6d6" stroke-width="15" stroke-dasharray="18 7"/>
-<path d="M260 119a40 40 0 0 1 80 0" fill="none" stroke="#c2dce7" stroke-width="8"/>
+<path class="art-gear" d="M255 119a45 45 0 0 1 91 0" fill="none" stroke="#a6c6d6" stroke-width="15" stroke-dasharray="18 7"/>
+<path class="art-gear-inner" d="M260 119a40 40 0 0 1 80 0" fill="none" stroke="#c2dce7" stroke-width="8"/>
 <rect x="202" y="126" width="195" height="19" rx="4" fill="#182b39"/>
 <path d="M204 126h21l-15 19h-6zm42 0h21l-15 19h-21zm42 0h21l-15 19h-21zm42 0h21l-15 19h-21zm42 0h21l-15 19h-21z" fill="#ffbb24"/>
-<text x="300" y="166" text-anchor="middle" fill="#0c2c44" font-family="Arial, sans-serif" font-weight="800" font-size="19">PÁGINA EN</text>
-<text x="300" y="190" text-anchor="middle" fill="#0c2c44" font-family="Arial, sans-serif" font-weight="800" font-size="19">CONSTRUCCIÓN</text>
+<text class="art-heading" x="300" y="166" text-anchor="middle" fill="#0c2c44" font-family="Arial, sans-serif" font-weight="800" font-size="19">PÁGINA EN</text>
+<text class="art-heading" x="300" y="190" text-anchor="middle" fill="#0c2c44" font-family="Arial, sans-serif" font-weight="800" font-size="19">CONSTRUCCIÓN</text>
 <path d="M130 223h340l-23 13H154z" fill="#527e94"/><rect x="130" y="219" width="340" height="8" rx="4" fill="#234c65"/>
 <!-- Left traffic cone -->
 <path d="M68 223 92 153h14l23 70z" fill="#ff8b16"/>
