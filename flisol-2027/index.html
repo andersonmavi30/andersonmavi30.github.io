@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f7fb;--surface:#fff;--ink:#09233b;--muted:#607386;--line:#d5e0e9;--accent:#007fa2;--accent-ink:#fff;--shine:rgba(0,161,201,.16)}
+:root{--bg:#f2faff;--surface:#fff;--ink:#09233b;--muted:#607386;--line:#d9edf5;--accent:#008cac;--accent-ink:#fff;--shine:rgba(0,161,201,.09)}
 [data-theme="dark"]{--bg:#071c2e;--surface:#0d2434;--ink:#f4fbff;--muted:#b2ccda;--line:#254356;--accent:#36d2ef;--accent-ink:#04202a;--shine:rgba(54,210,239,.13)}
 *{box-sizing:border-box}
 html{min-height:100%;scroll-behavior:smooth}
@@ -32,11 +32,16 @@ h1 span{color:var(--accent)}
 .subtitle{font-size:clamp(1.07rem,2.4vw,1.45rem);max-width:750px;margin:28px 0 30px;color:var(--muted);text-wrap:balance}
 .status{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid var(--accent);border-radius:50px;background:var(--surface);font-weight:700}
 .status svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.construction-art{display:none;width:min(530px,96vw);height:auto;margin:16px auto 0;overflow:visible}
+[data-theme="light"] .status{display:none}
+[data-theme="light"] .construction-art{display:block}
+[data-theme="light"] body{background:linear-gradient(132deg,transparent 0 12%,rgba(0,161,201,.035) 12% 16%,transparent 16% 79%,rgba(0,161,201,.035) 79% 83%,transparent 83%),radial-gradient(circle at 50% 35%,rgba(0,161,201,.075),transparent 63%),var(--bg)}
+[data-theme="light"] .brand-mark{color:#fff;background:#09233b;border-color:#09233b}
 .note{max-width:570px;color:var(--muted);font-size:14px;margin:24px 0 0}
 .rule{height:1px;width:min(100%,570px);background:var(--line);margin:50px auto 22px}
 .flisol{display:flex;flex-direction:column;align-items:center;gap:10px}
 .flisol a{display:block;text-decoration:none}
-.flisol img{display:block;width:min(310px,70vw);height:auto;max-height:180px;object-fit:contain;background:#fff;padding:10px 14px;border-radius:12px}
+.flisol img{display:block;width:min(310px,70vw);height:auto;max-height:180px;object-fit:contain;background:transparent;border:0;padding:0;border-radius:0}
 .flisol small{font-size:12px;color:var(--muted)}
 footer{padding:20px 24px 28px;text-align:center;color:var(--muted);font-size:12px}
 footer a{text-decoration:none;border-bottom:1px solid var(--line)}
@@ -55,6 +60,42 @@ footer a{text-decoration:none;border-bottom:1px solid var(--line)}
 <h1>De CLI a NetDevOps <span>+ Agentic AI</span></h1>
 <p class="subtitle" data-es="Automatizando redes SONiC con Open Source y Open-Weight AI" data-en="Automating SONiC Networks with Open Source and Open-Weight AI">Automatizando redes SONiC con Open Source y Open-Weight AI</p>
 <div class="status" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 4-4m8-8 4-4M3 3h18M3 21h18M7 3v4l5 5-5 5v4M17 3v4l-5 5 5 5v4"/></svg><span data-es="Página en construcción" data-en="Page under construction">Página en construcción</span></div>
+<svg class="construction-art" viewBox="0 0 600 260" role="img" aria-label="Página en construcción" xmlns="http://www.w3.org/2000/svg">
+<title>Página en construcción</title>
+<ellipse cx="300" cy="237" rx="262" ry="15" fill="#d2e7f1" opacity=".8"/>
+<!-- Laptop -->
+<rect x="145" y="30" width="310" height="193" rx="15" fill="#092e49" stroke="#1b6b8e" stroke-width="5"/>
+<rect x="158" y="43" width="284" height="166" rx="6" fill="#e7f7fc"/>
+<rect x="158" y="43" width="284" height="21" rx="6" fill="#a7d5e7"/>
+<circle cx="174" cy="53" r="4" fill="#ff715e"/><circle cx="188" cy="53" r="4" fill="#ffcc54"/><circle cx="202" cy="53" r="4" fill="#54c9bb"/>
+<path d="M255 119a45 45 0 0 1 91 0" fill="none" stroke="#a6c6d6" stroke-width="15" stroke-dasharray="18 7"/>
+<path d="M260 119a40 40 0 0 1 80 0" fill="none" stroke="#c2dce7" stroke-width="8"/>
+<rect x="202" y="126" width="195" height="19" rx="4" fill="#182b39"/>
+<path d="M204 126h21l-15 19h-6zm42 0h21l-15 19h-21zm42 0h21l-15 19h-21zm42 0h21l-15 19h-21zm42 0h21l-15 19h-21z" fill="#ffbb24"/>
+<text x="300" y="166" text-anchor="middle" fill="#0c2c44" font-family="Arial, sans-serif" font-weight="800" font-size="19">PÁGINA EN</text>
+<text x="300" y="190" text-anchor="middle" fill="#0c2c44" font-family="Arial, sans-serif" font-weight="800" font-size="19">CONSTRUCCIÓN</text>
+<path d="M130 223h340l-23 13H154z" fill="#527e94"/><rect x="130" y="219" width="340" height="8" rx="4" fill="#234c65"/>
+<!-- Left traffic cone -->
+<path d="M68 223 92 153h14l23 70z" fill="#ff8b16"/>
+<path d="m83 177 35 0 7 20H76z" fill="#fff4dc"/>
+<path d="m75 205h53l5 15H69z" fill="#fff4dc"/>
+<rect x="59" y="222" width="82" height="10" rx="4" fill="#ef7b0a"/>
+<!-- Right barricade -->
+<path d="M479 157v73m78-73v73" stroke="#364e58" stroke-width="8" stroke-linecap="round"/>
+<rect x="461" y="134" width="116" height="24" rx="4" fill="#1b2d38"/>
+<path d="M464 135h23l-18 22h-8zm41 0h23l-18 22h-23zm41 0h23l-18 22h-23z" fill="#ffbf23"/>
+<rect x="460" y="173" width="119" height="21" rx="3" fill="#182e40"/>
+<path d="M462 174h23l-17 19h-8zm41 0h22l-17 19h-23zm40 0h22l-17 19h-22z" fill="#ffbf23"/>
+<!-- Warning beacon -->
+<rect x="510" y="121" width="23" height="11" rx="4" fill="#364e58"/>
+<rect x="504" y="98" width="35" height="26" rx="13" fill="#ffbd21" stroke="#ff9600" stroke-width="4"/>
+<circle cx="521" cy="112" r="9" fill="#ffe579"/>
+<path d="M521 89V80m-23 15-8-7m55 7 8-7" stroke="#ffab00" stroke-width="4" stroke-linecap="round"/>
+<!-- Right traffic cone -->
+<path d="m485 228 14-39h10l14 39z" fill="#ff8b16"/>
+<path d="M493 205h22l5 12h-32z" fill="#fff5dd"/>
+<rect x="477" y="226" width="54" height="9" rx="4" fill="#ed7805"/>
+</svg>
 <p class="note" data-es="Próximamente: arquitectura, demostraciones, laboratorios y recursos de la charla." data-en="Coming soon: architecture, demos, hands-on labs and resources from the talk.">Próximamente: arquitectura, demostraciones, laboratorios y recursos de la charla.</p>
 <div class="rule"></div>
 <div class="flisol">
