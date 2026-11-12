@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>FLISoL 2027 | De CLI a NetDevOps + Agentic AI | Anderson MV Networks</title>
+<meta name="description" content="FLISoL 2027: De CLI a NetDevOps + Agentic AI. Automatizando redes SONiC con Open Source y Open-Weight AI. Página en construcción.">
+<meta name="theme-color" content="#071c2e">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f7fb;--surface:#fff;--ink:#09233b;--muted:#607386;--line:#d5e0e9;--accent:#007fa2;--accent-ink:#fff;--shine:rgba(0,161,201,.16)}
+[data-theme="dark"]{--bg:#071c2e;--surface:#0d2434;--ink:#f4fbff;--muted:#b2ccda;--line:#254356;--accent:#36d2ef;--accent-ink:#04202a;--shine:rgba(54,210,239,.13)}
+*{box-sizing:border-box}
+html{min-height:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 30%,var(--shine),transparent 54%),var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.55}
+a{color:inherit}
+.site-header{max-width:1220px;margin:auto;min-height:94px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 28px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;letter-spacing:.01em}
+.brand-mark{display:grid;place-items:center;width:46px;height:44px;border-radius:10px;border:1px solid var(--accent);color:var(--accent);font:700 15px "IBM Plex Mono",monospace}
+.actions{display:flex;gap:10px;align-items:center}
+.actions button{background:var(--surface);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:9px 12px;font:600 12px "IBM Plex Mono",monospace;cursor:pointer}
+.actions button:hover,.actions button:focus-visible{border-color:var(--accent)}
+main{width:min(100%,1100px);min-height:calc(100vh - 174px);margin:auto;padding:65px 24px 58px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.kicker{font:700 12px "IBM Plex Mono",monospace;letter-spacing:.13em;color:var(--accent);text-transform:uppercase}
+.event{font:700 13px "IBM Plex Mono",monospace;color:var(--muted);letter-spacing:.18em;margin:27px 0 15px}
+h1{font-size:clamp(2.7rem,7.5vw,5.8rem);max-width:1000px;line-height:1.04;letter-spacing:-.064em;margin:0;font-weight:800;text-wrap:balance}
+h1 span{color:var(--accent)}
+.subtitle{font-size:clamp(1.07rem,2.4vw,1.45rem);max-width:750px;margin:28px 0 30px;color:var(--muted);text-wrap:balance}
+.status{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid var(--accent);border-radius:50px;background:var(--surface);font-weight:700}
+.status svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.note{max-width:570px;color:var(--muted);font-size:14px;margin:24px 0 0}
+.rule{height:1px;width:min(100%,570px);background:var(--line);margin:50px auto 22px}
+.flisol{display:flex;flex-direction:column;align-items:center;gap:10px}
+.flisol a{display:block;text-decoration:none}
+.flisol img{display:block;width:min(310px,70vw);height:auto;max-height:180px;object-fit:contain;background:#fff;padding:10px 14px;border-radius:12px}
+.flisol small{font-size:12px;color:var(--muted)}
+footer{padding:20px 24px 28px;text-align:center;color:var(--muted);font-size:12px}
+footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+@media(max-width:650px){.site-header{padding:17px 18px;min-height:74px}.brand{font-size:13px}.brand-mark{width:38px;height:38px;font-size:12px}main{padding:60px 20px 40px;min-height:calc(100vh - 140px)}.kicker{font-size:10px;letter-spacing:.06em}.rule{margin-top:40px}.subtitle{margin-top:22px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="site-header">
+<a class="brand" href="/" aria-label="Anderson MV Networks - Home"><span class="brand-mark">AMV</span><span>Anderson MV Networks</span></a>
+<div class="actions"><button id="language" type="button" aria-label="Change language">EN</button><button id="theme" type="button" aria-label="Cambiar tema" title="Cambiar tema">☾</button></div>
+</header>
+<main>
+<div class="kicker" data-es="OPEN SOURCE · NETWORK AUTOMATION · AGENTIC AI" data-en="OPEN SOURCE · NETWORK AUTOMATION · AGENTIC AI">OPEN SOURCE · NETWORK AUTOMATION · AGENTIC AI</div>
+<p class="event">FLISoL 2027</p>
+<h1>De CLI a NetDevOps <span>+ Agentic AI</span></h1>
+<p class="subtitle" data-es="Automatizando redes SONiC con Open Source y Open-Weight AI" data-en="Automating SONiC Networks with Open Source and Open-Weight AI">Automatizando redes SONiC con Open Source y Open-Weight AI</p>
+<div class="status" role="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 20 4-4m8-8 4-4M3 3h18M3 21h18M7 3v4l5 5-5 5v4M17 3v4l-5 5 5 5v4"/></svg><span data-es="Página en construcción" data-en="Page under construction">Página en construcción</span></div>
+<p class="note" data-es="Próximamente: arquitectura, demostraciones, laboratorios y recursos de la charla." data-en="Coming soon: architecture, demos, hands-on labs and resources from the talk.">Próximamente: arquitectura, demostraciones, laboratorios y recursos de la charla.</p>
+<div class="rule"></div>
+<div class="flisol">
+<a href="https://flisol.info/" target="_blank" rel="noopener noreferrer" aria-label="Sitio oficial de FLISoL"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/FLISoL.png" alt="Logo FLISoL - Festival Latinoamericano de Instalación de Software Libre" loading="lazy" referrerpolicy="no-referrer"></a>
+<small data-es="Festival Latinoamericano de Instalación de Software Libre" data-en="Latin American Free Software Installation Festival">Festival Latinoamericano de Instalación de Software Libre</small>
+</div>
+</main>
+<footer>© <span id="year"></span> Anderson MV Networks · <a href="/" data-es="Volver al inicio" data-en="Back to home">Volver al inicio</a></footer>
+<script>
+(()=>{const root=document.documentElement,langButton=document.getElementById("language"),themeButton=document.getElementById("theme");
+const setLanguage=lang=>{root.lang=lang;root.dataset.lang=lang;document.querySelectorAll("[data-es][data-en]").forEach(e=>e.textContent=e.dataset[lang]);langButton.textContent=lang==="es"?"EN":"ES";localStorage.setItem("amv-lang",lang)};
+const setTheme=t=>{root.dataset.theme=t;themeButton.textContent=t==="dark"?"☀":"☾";localStorage.setItem("amv-theme",t)};
+langButton.addEventListener("click",()=>setLanguage(root.lang==="es"?"en":"es"));
+themeButton.addEventListener("click",()=>setTheme(root.dataset.theme==="dark"?"light":"dark"));
+setLanguage(localStorage.getItem("amv-lang")==="en"?"en":"es");
+setTheme(localStorage.getItem("amv-theme")==="light"?"light":"dark");
+document.getElementById("year").textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
